@@ -13,6 +13,7 @@ const AddMovieForm = (props) => {
     genre: "",
     metascore: 0,
     description: "",
+    id: Date.now(),
   });
 
   const handleChange = (e) => {
