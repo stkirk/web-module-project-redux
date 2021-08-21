@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { deleteMovie } from "../actions/movieActions";
+import { addFavorite } from "../actions/favoriteActions";
 
 const Movie = (props) => {
   const { id } = useParams();
@@ -55,7 +56,12 @@ const Movie = (props) => {
               </section>
 
               <section>
-                <span className="m-2 btn btn-dark">Favorite</span>
+                <span
+                  onClick={() => props.addFavorite(movie)}
+                  className="m-2 btn btn-dark"
+                >
+                  Favorite
+                </span>
                 <span className="delete">
                   <input
                     onClick={handleDelete}
@@ -83,6 +89,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteMovie: (id) => {
       dispatch(deleteMovie(id));
+    },
+    addFavorite: (newFavorite) => {
+      //   console.log("new fave", newFavorite);
+      dispatch(addFavorite(newFavorite));
     },
   };
 };
