@@ -9,7 +9,7 @@ const Movie = (props) => {
   const { push } = useHistory();
 
   // const movies = [];
-  const movie = props.movies.find((movie) => movie.id === Number(id));
+  const movie = props.movies.find((movie) => movie.id === id);
 
   //delete dispatch handler
   const handleDelete = () => {
