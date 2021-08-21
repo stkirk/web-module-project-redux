@@ -3,6 +3,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { removeFavorite } from "../actions/favoriteActions";
+
 const FavoriteMovieList = (props) => {
   const favorites = props.favorites;
 
@@ -18,7 +20,12 @@ const FavoriteMovieList = (props) => {
             >
               {movie.title}
               <span>
-                <span className="material-icons">remove_circle</span>
+                <span
+                  onClick={() => props.removeFavorite(movie.id)}
+                  className="material-icons"
+                >
+                  remove_circle
+                </span>
               </span>
             </Link>
           </div>
@@ -34,4 +41,13 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(FavoriteMovieList);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeFavorite: (id) => {
+      //   console.log(id);
+      dispatch(removeFavorite(id));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteMovieList);
